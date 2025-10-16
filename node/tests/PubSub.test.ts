@@ -1750,6 +1750,7 @@ describe("PubSub", () => {
                     getOptions(clusterMode),
                     pubSubPattern,
                 );
+                await new Promise((resolve) => setTimeout(resolve, 1000));
 
                 // Publish messages to all channels
                 for (const [channel, message] of allChannelsAndMessages) {
