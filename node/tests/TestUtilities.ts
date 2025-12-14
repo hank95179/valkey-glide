@@ -198,15 +198,15 @@ export async function checkWhichCommandAvailable(
     redisCommand: string,
 ): Promise<string> {
     try {
-        if (await checkCommandAvailability(valkeyCommand)) {
-            return valkeyCommand;
+        if (await checkCommandAvailability(redisCommand)) {
+            return redisCommand;
         }
     } catch {
         // ignore
     }
 
-    if (await checkCommandAvailability(redisCommand)) {
-        return redisCommand;
+    if (await checkCommandAvailability(valkeyCommand)) {
+        return valkeyCommand;
     }
 
     throw new Error("No available command found.");
@@ -567,7 +567,7 @@ export async function flushAndCloseClient(
 
         // Add a small delay to allow sockets to be properly released
         // This prevents socket exhaustion when running many tests sequentially
-        await new Promise((resolve) => setTimeout(resolve, 10));
+        await new Promise((resolve) => setTimeout(resolve, 500));
     }
 }
 
@@ -2431,16 +2431,9 @@ export async function getServerVersion(
         );
     }
 
-    let version = "";
-    const redisVersionKey = "redis_version:";
-    const valkeyVersionKey = "valkey_version:";
-
-    if (info.includes(valkeyVersionKey)) {
-        version = info.split(valkeyVersionKey)[1].split("\n")[0];
-    } else if (info.includes(redisVersionKey)) {
-        version = info.split(redisVersionKey)[1].split("\n")[0];
-    }
-
+    const versionMatch = info.match(/redis_version:(\d+\.\d+\.\d+)/);
+    const version = versionMatch ? versionMatch[1] : "0.0.0";
+    console.log(`[DEBUG] getServerVersion: Detected version ${version}`);
     return version;
 }
 
