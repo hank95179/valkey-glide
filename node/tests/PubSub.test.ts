@@ -618,7 +618,7 @@ describe("PubSub", () => {
                 const channelsAndMessages: [GlideString, GlideString][] = [];
 
                 for (let i = 0; i < NUM_CHANNELS; i++) {
-                    const channel = `${shardPrefix}${getRandomKey()}`;
+                    const channel = `${shardPrefix}-${i}-${getRandomKey()}`;
                     const message = getRandomKey();
                     channelsAndMessages.push([channel, message]);
                 }
@@ -742,7 +742,7 @@ describe("PubSub", () => {
                 const channelsAndMessages: [GlideString, GlideString][] = [];
 
                 for (let i = 0; i < NUM_CHANNELS; i++) {
-                    const channel = `${shardPrefix}${getRandomKey()}`;
+                    const channel = `${shardPrefix}-${i}-${getRandomKey()}`;
                     const message = getRandomKey();
                     channelsAndMessages.push([channel, message]);
                 }
@@ -1057,7 +1057,7 @@ describe("PubSub", () => {
             const channelsAndMessages: [GlideString, GlideString][] = [];
 
             for (let i = 0; i < NUM_CHANNELS; i++) {
-                const channel = `${shardPrefix}${getRandomKey()}`;
+                const channel = `${shardPrefix}-${i}-${getRandomKey()}`;
                 const message = getRandomKey();
                 channelsAndMessages.push([channel, message]);
             }
@@ -1380,7 +1380,7 @@ describe("PubSub", () => {
             const channels: [GlideString, GlideString][] = [];
 
             for (let i = 0; i < NUM_CHANNELS; i++) {
-                const channel = `{{channel}}:${getRandomKey()}`;
+                const channel = `{{channel}}:${i}:${getRandomKey()}`;
                 const message = getRandomKey();
                 channels.push([channel, message]);
             }
@@ -1504,8 +1504,8 @@ describe("PubSub", () => {
             const patternChannelsAndMessages: [GlideString, GlideString][] = [];
 
             for (let i = 0; i < NUM_CHANNELS; i++) {
-                const exactChannel = `{{channel}}:${getRandomKey()}`;
-                const patternChannel = `{{pattern}}:${getRandomKey()}`;
+                const exactChannel = `{{channel}}:${i}:${getRandomKey()}`;
+                const patternChannel = `{{pattern}}:${i}:${getRandomKey()}`;
                 const exactMessage = getRandomKey();
                 const patternMessage = getRandomKey();
 
@@ -1658,8 +1658,8 @@ describe("PubSub", () => {
             const patternChannelsAndMessages: [GlideString, GlideString][] = [];
 
             for (let i = 0; i < NUM_CHANNELS; i++) {
-                const exactChannel = `{{channel}}:${getRandomKey()}`;
-                const patternChannel = `{{pattern}}:${getRandomKey()}`;
+                const exactChannel = `{{channel}}:${i}:${getRandomKey()}`;
+                const patternChannel = `{{pattern}}:${i}:${getRandomKey()}`;
                 const exactMessage = getRandomKey();
                 const patternMessage = getRandomKey();
 
@@ -1883,9 +1883,9 @@ describe("PubSub", () => {
             const shardedChannelsAndMessages: [GlideString, GlideString][] = [];
 
             for (let i = 0; i < NUM_CHANNELS; i++) {
-                const exactChannel = `{{channel}}:${getRandomKey()}`;
-                const patternChannel = `{{pattern}}:${getRandomKey()}`;
-                const shardedChannel = `${SHARD_PREFIX}:${getRandomKey()}`;
+                const exactChannel = `{{channel}}:${i}:${getRandomKey()}`;
+                const patternChannel = `{{pattern}}:${i}:${getRandomKey()}`;
+                const shardedChannel = `${SHARD_PREFIX}:${i}:${getRandomKey()}`;
                 exactChannelsAndMessages.push([exactChannel, getRandomKey()]);
                 patternChannelsAndMessages.push([
                     patternChannel,
@@ -2058,9 +2058,9 @@ describe("PubSub", () => {
             const shardedChannelsAndMessages: [GlideString, GlideString][] = [];
 
             for (let i = 0; i < NUM_CHANNELS; i++) {
-                const exactChannel = `{{channel}}:${getRandomKey()}`;
-                const patternChannel = `{{pattern}}:${getRandomKey()}`;
-                const shardedChannel = `${SHARD_PREFIX}:${getRandomKey()}`;
+                const exactChannel = `{{channel}}:${i}:${getRandomKey()}`;
+                const patternChannel = `{{pattern}}:${i}:${getRandomKey()}`;
+                const shardedChannel = `${SHARD_PREFIX}:${i}:${getRandomKey()}`;
                 exactChannelsAndMessages.push([exactChannel, getRandomKey()]);
                 patternChannelsAndMessages.push([
                     patternChannel,
